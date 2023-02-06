@@ -22,6 +22,9 @@
   width: 300px;
   height: 50px;
 }
+.active{
+  border-color: blue;
+}
 /*
 ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com
 */

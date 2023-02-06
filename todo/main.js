@@ -1,9 +1,10 @@
-const todoForm =document.querySelector('#todo-form');
+    const todoForm =document.querySelector('#todo-form');
     const todoList =document.querySelector('.todos');
     const mainInput =document.querySelector('#todo-form input');
     const totalTasks =document.querySelector('#counter');
     const btnGroup =document.querySelectorAll('.btn-group button');
     const check =document.querySelector('.check');
+    const lis =document.querySelectorAll('li');
     
     let tasks =JSON.parse(localStorage.getItem('tasks')) || []  
 
@@ -40,9 +41,10 @@ const todoForm =document.querySelector('#todo-form');
         }
     })
 
-    todoList.addEventListener('input',(e)=>{
+    todoList.addEventListener('dbclick',(e)=>{
         const taskId =e.target.closest('li').id
-        updateTask(taskId,e.target);
+        console.log(e)
+       /*  updateTask(taskId,e.target); */
     })
 
     todoList.addEventListener('keydown',(e)=>{
@@ -99,6 +101,7 @@ const todoForm =document.querySelector('#todo-form');
         <div>
             <input type="checkbox" name="tasks" id="${task.id}" ${task.isCompleted ?'checked' : ''}>
             <span ${!task.isCompleted ? 'contenteditable' : ''}>${task.name}</span>
+            <input value="${task.name}" type="text" style="display:none" data-id="${task.id}">
         </div>
         <button class="remove-task" title="Remove the "${task.name}" task"><i class="fa fa-remove" style="font-size:24px;color:red"></i></button>
         `
@@ -158,23 +161,31 @@ const todoForm =document.querySelector('#todo-form');
     }
 
     function checkAll(e){
-        const li=document.querySelectorAll('li');
+        const lis=document.querySelectorAll('li');
         const inputs=document.querySelectorAll('li input');  
             if(e.innerHTML=="Check All"){
-                li.forEach(function(c){
-                    c.classList.add('complete');
-                })
+                tasks.forEach(function(task){
+                    task.isCompleted =true;
+                    console.log(task)
+               })
                 inputs.forEach(function(inp){
                     inp.setAttribute('checked',true);
                 })
-                e.innerHTML ="Unheck All"
+                localStorage.setItem('tasks',JSON.stringify(tasks))
+                countTasks()
+                e.innerHTML ="Uncheck All"
+                location.reload();
             }else{
-                li.forEach(function(c){
-                    c.classList.remove('complete');
+                tasks.forEach(function(task){
+                    task.isCompleted=false;
+                    console.log(task)
                 })
                 inputs.forEach(function(inp){
                     inp.removeAttribute('checked');
                 })
+                localStorage.setItem('tasks',JSON.stringify(tasks))
+                countTasks()
                 e.innerHTML ="Check All"
+                location.reload();
             }
    }
