@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Todo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+</head>
+<body>
+   <div class="container m-auto">
+        <div class="shadow border m-auto p-5 w-[500px] mt-[100px]" >
+            <div class="flex flex-col space-y-6">
+            <h1>Todo</h1>
+           <form action="javascript:void(0);" class="flex" id="todo-form">
+                <input type="text" name="task-name" id="task-name" class="block w-full shadow-sm p-4 border-2 border-gray-300 focus:outline-none
+                 sm:text-md focus:ring-blue-500 focus:border-blue-500 " autofocus placeholder="Add new..">
+                <button class="bg-sky-500 text-white w-[50px] text-lg" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
+           </form>
+           <div class="flex space-x-2 mt-3 btn-group">
+                <button class="flex-1 border-2 shadow-sm py-2 btn active" id="all" type="button" >All</button>
+                <button class="flex-1 border-2 shadow-sm py-2 btn " id="active" type="button">Active</button>
+                <button class="flex-1 border-2 shadow-sm py-2 btn " id="completed" type="button">Completed</button>
+           </div>
+           <ul class="todos">
+                
+           </ul>
+           <span id="counter">0</span>
+           <div class="flex space-x-2">
+                <button class="flex-1 border shadow-sm py-2 disabled:opacity-50 check" id="checkUncheck" onclick="checkAll(this)" type="button">Check All</button>
+                <button class="flex-1 border shadow-sm py-2 disabled:opacity-50" type="button" onclick="clearCompleted()">Clear Completed</button>
+           </div>
+        </div>
+    </div>
+   </div>
+   <script src="main.js"></script>
+</body>
+</html>
